@@ -1,0 +1,843 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cyber Shield 360</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #081321;
+  color: #eef5ff;
+  line-height: 1.6;
+}
+
+header {
+  background: #101f33;
+  padding: 24px 16px;
+  text-align: center;
+  border-bottom: 2px solid #13c9bd;
+}
+
+header h1 {
+  color: #20e0cf;
+  font-size: 30px;
+}
+
+header p {
+  color: #b8c8dc;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  padding: 16px 10px;
+  background: #0d1b2c;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  padding: 11px 17px;
+  font-weight: bold;
+  background: #13c9bd;
+  color: #071522;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: #70f4e7;
+  transform: translateY(-1px);
+}
+
+nav button {
+  background: #20364d;
+  color: white;
+}
+
+nav button.active {
+  background: #13c9bd;
+  color: #071522;
+}
+
+.container {
+  max-width: 950px;
+  margin: auto;
+  padding: 25px 16px;
+}
+
+.panel {
+  background: #12243a;
+  padding: 24px;
+  border-radius: 14px;
+  border: 1px solid #29435d;
+  margin-bottom: 20px;
+}
+
+.panel h2 {
+  color: #20e0cf;
+  margin-bottom: 12px;
+}
+
+.panel p {
+  color: #bdcde0;
+  margin-bottom: 14px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 13px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #49627b;
+  background: #091829;
+  color: white;
+  font-size: 15px;
+}
+
+textarea {
+  min-height: 115px;
+  resize: vertical;
+}
+
+input:focus, textarea:focus {
+  outline: 2px solid #13c9bd;
+}
+
+.section {
+  display: none;
+}
+
+.section.active {
+  display: block;
+}
+
+.meter {
+  width: 100%;
+  height: 12px;
+  background: #293b50;
+  border-radius: 20px;
+  margin: 15px 0;
+  overflow: hidden;
+}
+
+#meterFill {
+  height: 100%;
+  width: 0%;
+  background: #ef5350;
+  transition: 0.3s;
+}
+
+.result {
+  padding: 14px;
+  background: #091829;
+  border-radius: 8px;
+  margin-top: 14px;
+}
+
+ul {
+  padding-left: 22px;
+  color: #bdcde0;
+}
+
+li {
+  margin: 7px 0;
+}
+
+.quiz-option {
+  display: block;
+  width: 100%;
+  margin: 9px 0;
+  text-align: left;
+  background: #20364d;
+  color: white;
+}
+
+.quiz-option:disabled {
+  opacity: 0.8;
+  cursor: default;
+}
+
+#feedback {
+  margin: 15px 0;
+  font-weight: bold;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin: 15px 0;
+}
+
+.stat {
+  background: #091829;
+  border: 1px solid #29435d;
+  padding: 17px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.stat strong {
+  display: block;
+  color: #20e0cf;
+  font-size: 25px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+td, th {
+  padding: 12px 8px;
+  text-align: left;
+  border-bottom: 1px solid #29435d;
+}
+
+th {
+  color: #20e0cf;
+}
+
+.small {
+  font-size: 12px;
+  color: #91a7bd;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  color: #91a7bd;
+}
+
+@media(max-width: 500px) {
+  header h1 { font-size: 23px; }
+  .panel { padding: 17px; }
+  nav button { padding: 9px 11px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🛡️ CYBER SHIELD 360</h1>
+  <p>Your Interactive Cyber Security Awareness Centre</p>
+</header>
+
+<nav>
+  <button class="active" data-tab="home">Home</button>
+  <button data-tab="password">Password Lab</button>
+  <button data-tab="scam">Scam Detector</button>
+  <button data-tab="quiz">Quiz Arena</button>
+  <button data-tab="scores">Scoreboard</button>
+</nav>
+
+<main class="container">
+
+<!-- HOME -->
+<section id="home" class="section active">
+  <div class="panel">
+    <h2>Welcome to Cyber Shield 360!</h2>
+    <p>Learn how to protect yourself from online scams, weak passwords and cyber threats.</p>
+    <div class="stat-grid">
+      <div class="stat">
+        <strong>01</strong>
+        Password Lab
+      </div>
+      <div class="stat">
+        <strong>02</strong>
+        Scam Detector
+      </div>
+      <div class="stat">
+        <strong>03</strong>
+        Quiz Arena
+      </div>
+      <div class="stat">
+        <strong>04</strong>
+        Scoreboard
+      </div>
+    </div>
+    <h3>Explore the features</h3>
+    <ul>
+      <li>Test password strength.</li>
+      <li>Identify suspicious messages.</li>
+      <li>Play cyber security quizzes.</li>
+      <li>Check your quiz performance.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PASSWORD CHECKER -->
+<section id="password" class="section">
+  <div class="panel">
+    <h2>🔐 Password Strength Lab</h2>
+    <p>Enter a sample password to check its strength.</p>
+
+    <input type="password" id="passwordInput"
+      placeholder="Enter a sample password"
+      autocomplete="new-password">
+
+    <button id="togglePassword">Show password</button>
+
+    <div class="meter">
+      <div id="meterFill"></div>
+    </div>
+
+    <h3 id="strengthText">Strength: Not tested</h3>
+
+    <div class="result">
+      <h3>Security suggestions</h3>
+      <ul id="suggestions">
+        <li>Enter a sample password to begin.</li>
+      </ul>
+    </div>
+
+    <p class="small">
+      This demo checks the password in your browser.
+      Do not enter your real password.
+      Passwords are not saved or transmitted.
+    </p>
+  </div>
+</section>
+
+<!-- SCAM DETECTOR -->
+<section id="scam" class="section">
+  <div class="panel">
+    <h2>🚨 Scam Message Detector</h2>
+    <p>Paste a sample message to check for common scam warning signs.</p>
+
+    <textarea id="scamInput"
+      placeholder="Example: Congratulations! You won a free prize. Pay a fee now to claim it."></textarea>
+
+    <button id="checkScam">Analyse Message</button>
+
+    <div id="scamResult" class="result" aria-live="polite">
+      Your analysis will appear here.
+    </div>
+
+    <p class="small">
+      Educational demonstration only. This checker uses simple
+      keyword patterns and cannot confirm whether a message is genuine.
+      Never click suspicious links or share OTPs or passwords.
+    </p>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz" class="section">
+  <div class="panel">
+    <h2>🧠 Cyber Quiz Arena</h2>
+    <p>Test your cyber security knowledge!</p>
+
+    <div class="stat-grid">
+      <div class="stat">
+        <strong id="questionNumber">1/8</strong>
+        Question
+      </div>
+      <div class="stat">
+        <strong id="quizPoints">0</strong>
+        Points
+      </div>
+    </div>
+
+    <h3 id="question">Question appears here</h3>
+
+    <div id="options"></div>
+
+    <p id="feedback" aria-live="polite"></p>
+
+    <button id="nextQuestion" style="display:none">
+      Next Question →
+    </button>
+
+    <div id="quizEnd" style="display:none">
+      <h2>🎉 Quiz Completed!</h2>
+      <h3 id="finalScore"></h3>
+      <input id="playerName" maxlength="20"
+        placeholder="Enter your name for scoreboard">
+      <button id="saveScore">Save My Score</button>
+      <p id="saveMessage" aria-live="polite"></p>
+      <button id="restartQuiz">Play Again</button>
+    </div>
+  </div>
+</section>
+
+<!-- SCOREBOARD -->
+<section id="scores" class="section">
+  <div class="panel">
+    <h2>🏆 Cyber Champion Scoreboard</h2>
+    <p>See the top quiz scores recorded on this browser.</p>
+
+    <div class="stat-grid">
+      <div class="stat">
+        <strong id="totalPlayers">0</strong>
+        Attempts saved
+      </div>
+      <div class="stat">
+        <strong id="topScore">0</strong>
+        Highest score
+      </div>
+    </div>
+
+    <div style="overflow-x:auto">
+      <table>
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody id="leaderboard"></tbody>
+      </table>
+    </div>
+
+    <p class="small">
+      Scores are saved locally in this browser, not shared
+      between different visitors or devices.
+    </p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>🛡️ CYBER SHIELD 360</p>
+  <p>Think Before You Click. Stay Safe Online.</p>
+</footer>
+
+<script>
+// NAVIGATION
+document.querySelectorAll("nav button").forEach(button => {
+  button.addEventListener("click", () => {
+    document.querySelectorAll(".section").forEach(section =>
+      section.classList.remove("active")
+    );
+
+    document.querySelectorAll("nav button").forEach(btn =>
+      btn.classList.remove("active")
+    );
+
+    document.getElementById(button.dataset.tab)
+      .classList.add("active");
+
+    button.classList.add("active");
+
+    if (button.dataset.tab === "scores") {
+      renderScores();
+    }
+  });
+});
+
+// PASSWORD STRENGTH CHECKER
+const passwordInput = document.getElementById("passwordInput");
+
+passwordInput.addEventListener("input", () => {
+  const p = passwordInput.value;
+  const suggestions = [];
+  let points = 0;
+
+  if (p.length >= 8) points++;
+  else suggestions.push("Use at least 8 characters.");
+
+  if (p.length >= 12) points++;
+
+  if (/[A-Z]/.test(p)) points++;
+  else suggestions.push("Add an uppercase letter.");
+
+  if (/[a-z]/.test(p)) points++;
+  else suggestions.push("Add a lowercase letter.");
+
+  if (/[0-9]/.test(p)) points++;
+  else suggestions.push("Add a number.");
+
+  if (/[^A-Za-z0-9]/.test(p)) points++;
+  else suggestions.push("Add a special character.");
+
+  if (/(.)\1{2,}/.test(p)) {
+    points = Math.max(0, points - 1);
+    suggestions.push("Avoid repeating the same character.");
+  }
+
+  if (/password|123456|qwerty|admin/i.test(p) && p.length > 0) {
+    points = Math.max(0, points - 2);
+    suggestions.push("Avoid common password patterns.");
+  }
+
+  const percentage = p.length === 0 ? 0 :
+    Math.round(points / 6 * 100);
+
+  let label = "Weak";
+  let color = "#ef5350";
+
+  if (points >= 5 && p.length >= 12) {
+    label = "Very Strong";
+    color = "#16c784";
+  } else if (points >= 4) {
+    label = "Strong";
+    color = "#20c9a6";
+  } else if (points >= 3) {
+    label = "Medium";
+    color = "#f0b429";
+  }
+
+  document.getElementById("meterFill").style.width =
+    percentage + "%";
+
+  document.getElementById("meterFill").style.background =
+    color;
+
+  document.getElementById("strengthText").textContent =
+    p.length ? "Strength: " + label : "Strength: Not tested";
+
+  document.getElementById("strengthText").style.color = color;
+
+  if (p.length === 0) {
+    suggestions.push("Enter a sample password to begin.");
+  } else if (suggestions.length === 0) {
+    suggestions.push("Good job! Consider using a unique passphrase.");
+  }
+
+  const list = document.getElementById("suggestions");
+  list.replaceChildren();
+
+  suggestions.forEach(item => {
+    const li = document.createElement("li");
+    li.textContent = item;
+    list.appendChild(li);
+  });
+});
+
+// SHOW / HIDE PASSWORD
+document.getElementById("togglePassword").addEventListener("click", () => {
+  const isHidden = passwordInput.type === "password";
+  passwordInput.type = isHidden ? "text" : "password";
+  document.getElementById("togglePassword").textContent =
+    isHidden ? "Hide password" : "Show password";
+});
+
+// SCAM DETECTOR
+document.getElementById("checkScam").addEventListener("click", () => {
+  const message = document.getElementById("scamInput")
+    .value.toLowerCase();
+
+  const result = document.getElementById("scamResult");
+  result.replaceChildren();
+
+  if (!message.trim()) {
+    result.textContent = "Please enter a sample message.";
+    return;
+  }
+
+  const patterns = [
+    ["urgent action", /urgent|immediately|act now|last chance/],
+    ["prize or reward claim", /won|winner|prize|lottery|reward|free gift/],
+    ["money request", /pay|payment|fee|transfer money|send money/],
+    ["sensitive information request", /otp|password|pin|bank details|cvv/],
+    ["suspicious link language", /click here|verify your account|login now/],
+    ["threatening language", /blocked|suspended|arrest|legal action/]
+  ];
+
+  const detected = patterns.filter(item =>
+    item[1].test(message)
+  ).map(item => item[0]);
+
+  const heading = document.createElement("h3");
+  const description = document.createElement("p");
+
+  if (detected.length >= 3) {
+    heading.textContent = "⚠️ Several warning signs detected";
+    heading.style.color = "#ff7777";
+    description.textContent =
+      "This message contains multiple common scam indicators.";
+  } else if (detected.length > 0) {
+    heading.textContent = "⚠️ Some warning signs detected";
+    heading.style.color = "#f0b429";
+    description.textContent =
+      "Review this message carefully before taking action.";
+  } else {
+    heading.textContent = "No common warning words detected";
+    heading.style.color = "#20e0cf";
+    description.textContent =
+      "This does NOT prove the message is safe.";
+  }
+
+  result.append(heading, description);
+
+  const title = document.createElement("h4");
+  title.textContent = "Analysis:";
+  result.appendChild(title);
+
+  if (detected.length) {
+    const list = document.createElement("ul");
+    detected.forEach(item => {
+      const li = document.createElement("li");
+      li.textContent = item;
+      list.appendChild(li);
+    });
+    result.appendChild(list);
+  } else {
+    const p = document.createElement("p");
+    p.textContent = "No listed indicators were found.";
+    result.appendChild(p);
+  }
+
+  const advice = document.createElement("p");
+  advice.textContent =
+    "Safety tip: Verify through the official organisation's website or app. Never share OTPs or passwords.";
+  result.appendChild(advice);
+});
+
+// QUIZ QUESTIONS
+const questions = [
+  {
+    q: "What should you do with a suspicious email link?",
+    a: ["Click immediately", "Avoid clicking and verify", "Forward to everyone", "Enter your password"],
+    correct: 1
+  },
+  {
+    q: "Which password is generally safer?",
+    a: ["123456", "password", "A unique long passphrase", "Your name"],
+    correct: 2
+  },
+  {
+    q: "What is phishing?",
+    a: ["A computer game", "A trick to steal information", "A type of keyboard", "A software update"],
+    correct: 1
+  },
+  {
+    q: "Should you share your OTP with someone?",
+    a: ["Yes, always", "Only with strangers", "No", "Post it online"],
+    correct: 2
+  },
+  {
+    q: "What does HTTPS indicate?",
+    a: ["An encrypted connection", "A guaranteed safe website", "No internet connection", "A free website"],
+    correct: 0
+  },
+  {
+    q: "What is two-factor authentication?",
+    a: ["Two passwords written down", "An extra verification step", "Sharing your account", "Changing your username"],
+    correct: 1
+  },
+  {
+    q: "What should you do if you receive a suspicious payment request?",
+    a: ["Pay quickly", "Verify independently first", "Share your PIN", "Ignore all security warnings"],
+    correct: 1
+  },
+  {
+    q: "What is a digital footprint?",
+    a: ["Your shoe size", "Your online activity trail", "A computer virus", "A password"],
+    correct: 1
+  }
+];
+
+let currentQuestion = 0;
+let score = 0;
+let answered = false;
+let savedThisRound = false;
+
+function showQuestion() {
+  answered = false;
+
+  document.getElementById("quizEnd").style.display = "none";
+  document.getElementById("nextQuestion").style.display = "none";
+  document.getElementById("feedback").textContent = "";
+
+  const q = questions[currentQuestion];
+
+  document.getElementById("questionNumber").textContent =
+    (currentQuestion + 1) + "/" + questions.length;
+
+  document.getElementById("quizPoints").textContent = score;
+
+  document.getElementById("question").textContent = q.q;
+
+  const options = document.getElementById("options");
+  options.replaceChildren();
+
+  q.a.forEach((answer, index) => {
+    const button = document.createElement("button");
+    button.className = "quiz-option";
+    button.textContent = answer;
+
+    button.addEventListener("click", () => checkAnswer(index));
+
+    options.appendChild(button);
+  });
+}
+
+function checkAnswer(index) {
+  if (answered) return;
+  answered = true;
+
+  const q = questions[currentQuestion];
+  const buttons = document.querySelectorAll(".quiz-option");
+
+  buttons.forEach(button => button.disabled = true);
+
+  const feedback = document.getElementById("feedback");
+
+  if (index === q.correct) {
+    score += 10;
+    feedback.textContent = "✅ Correct! You earned 10 points.";
+    feedback.style.color = "#20e0cf";
+  } else {
+    feedback.textContent =
+      "❌ Incorrect. Correct answer: " + q.a[q.correct];
+    feedback.style.color = "#ff7777";
+  }
+
+  document.getElementById("quizPoints").textContent = score;
+
+  document.getElementById("nextQuestion").style.display = "inline-block";
+  document.getElementById("nextQuestion").textContent =
+    currentQuestion === questions.length - 1 ?
+    "See Results" : "Next Question →";
+}
+
+document.getElementById("nextQuestion").addEventListener("click", () => {
+  currentQuestion++;
+
+  if (currentQuestion < questions.length) {
+    showQuestion();
+  } else {
+    finishQuiz();
+  }
+});
+
+function finishQuiz() {
+  document.getElementById("options").replaceChildren();
+  document.getElementById("question").textContent = "Your quiz results";
+  document.getElementById("feedback").textContent = "";
+  document.getElementById("nextQuestion").style.display = "none";
+  document.getElementById("quizEnd").style.display = "block";
+
+  document.getElementById("finalScore").textContent =
+    "Your score: " + score + " / " + (questions.length * 10);
+
+  savedThisRound = false;
+  document.getElementById("saveScore").disabled = false;
+  document.getElementById("saveMessage").textContent = "";
+}
+
+document.getElementById("saveScore").addEventListener("click", () => {
+  if (savedThisRound) return;
+
+  const name = document.getElementById("playerName")
+    .value.trim().slice(0, 20);
+
+  if (!name) {
+    document.getElementById("saveMessage").textContent =
+      "Please enter your name first.";
+    return;
+  }
+
+  try {
+    const scores = JSON.parse(
+      localStorage.getItem("cyberShieldScores") || "[]"
+    );
+
+    scores.push({
+      name: name,
+      score: score,
+      date: new Date().toLocaleDateString()
+    });
+
+    localStorage.setItem(
+      "cyberShieldScores",
+      JSON.stringify(scores)
+    );
+
+    savedThisRound = true;
+    document.getElementById("saveScore").disabled = true;
+    document.getElementById("saveMessage").textContent =
+      "🏆 Your score has been saved!";
+    renderScores();
+  } catch (error) {
+    document.getElementById("saveMessage").textContent =
+      "Could not save score in this browser.";
+  }
+});
+
+function restartQuiz() {
+  currentQuestion = 0;
+  score = 0;
+  savedThisRound = false;
+  document.getElementById("playerName").value = "";
+  showQuestion();
+}
+
+document.getElementById("restartQuiz").addEventListener("click", restartQuiz);
+
+// SCOREBOARD
+function renderScores() {
+  let scores = [];
+
+  try {
+    scores = JSON.parse(
+      localStorage.getItem("cyberShieldScores") || "[]"
+    );
+    if (!Array.isArray(scores)) scores = [];
+  } catch {
+    scores = [];
+  }
+
+  scores.sort((a, b) => b.score - a.score);
+
+  document.getElementById("totalPlayers").textContent =
+    scores.length;
+
+  document.getElementById("topScore").textContent =
+    scores.length ? scores[0].score : 0;
+
+  const board = document.getElementById("leaderboard");
+  board.replaceChildren();
+
+  if (!scores.length) {
+    const row = document.createElement("tr");
+    const cell = document.createElement("td");
+    cell.colSpan = 3;
+    cell.textContent = "No scores yet. Play the quiz to get started!";
+    row.appendChild(cell);
+    board.appendChild(row);
+    return;
+  }
+
+  scores.slice(0, 10).forEach((player, index) => {
+    const row = document.createElement("tr");
+
+    [index + 1, player.name, player.score + " / 80"]
+      .forEach(value => {
+        const cell = document.createElement("td");
+        cell.textContent = value;
+        row.appendChild(cell);
+      });
+
+    board.appendChild(row);
+  });
+}
+
+// START
+showQuestion();
+renderScores();
+
+</script>
+</body>
+</html>
